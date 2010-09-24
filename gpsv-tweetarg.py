@@ -15,6 +15,7 @@ Dependencies:
 
 """
 
+import sys
 import ConfigParser
 import tweepy
 
@@ -45,8 +46,9 @@ class api_auth_factory:
 			config_data['consumer_key'] = config.get('LoginData', 'consumer_key')
 			config_data['consumer_secret'] = config.get('LoginData', 'consumer_secret')
 			config_data['username'] = config.get('LoginData', 'username')
-		except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.ParsingError):
-			print 'Error reading configuration file. Creating default one.'
+		except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.ParsingError), e:
+			print 'Error reading configuration file:', e
+			print 'Creating default one.'
 			config.add_section('LoginData')
 			config.set('LoginData', 'consumer_key', config_data['consumer_key'])
 			config.set('LoginData', 'consumer_secret', config_data['consumer_secret'])
@@ -56,8 +58,9 @@ class api_auth_factory:
 		try:
 			config_data['access_key'] = config.get('LoginData', 'access_key')
 			config_data['access_secret'] = config.get('LoginData', 'access_secret')
-		except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.ParsingError):
-			print 'Not registered, yet. Starting initial authentication.'
+		except (ConfigParser.NoSectionError, ConfigParser.NoOptionError, ConfigParser.ParsingError), e:
+			print 'Not registered, yet: %s' %e
+			print 'Starting initial authentication.'
 			api = self._initial_authentication(config, config_data)
 			config_file = open (file_name[0], 'w')
 			config.write(config_file)
@@ -80,6 +83,7 @@ class api_auth_factory:
 		except tweepy.TweepError:
 			print 'Error! Failed to get request token.'
 			tweepy.debug()
+			raise SystemExit(0)
 		#user interaction needed!!
 		print "Pleas copy th following url to a browser."
 		print redirect_url
@@ -92,6 +96,7 @@ class api_auth_factory:
 		except tweepy.TweepError:
 			print 'Error! Failed to get access token.'
 			tweepy.debug()
+			raise SystemExit(0)
 		else:
 			config.set('LoginData', 'access_key', auth.access_token.key)
 			config.set('LoginData', 'access_secret', auth.access_token.secret)
@@ -110,10 +115,11 @@ if __name__ == '__main__':
 	api = api_auth_factory().__call__()
 
 	print "****************************************"
-	print "API() created for", api.me().name, "(" api.me().screen_name, api.me().id, ")"
+	print "API() created for", api.me().name, "(", api.me().screen_name, api.me().id, ")"
 	print "****************************************"
 
-	api.update_status(sys.argv[1])
+	if len(sys.argv) > 1:
+		api.update_status(sys.argv[1])
 
 # vim: ts=2:sw=2:sts=2:fileformat=unix
 # vim: comments& comments+=b\:# formatoptions& formatoptions+=or
