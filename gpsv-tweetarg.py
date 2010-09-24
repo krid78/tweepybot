@@ -13,6 +13,9 @@ Dependencies:
 	* python 2.5.X
 	* tweepy 1.7.1
 
+TODO:
+	* use username as section for access tokens -> then one rc-file works for several users
+	* enhance command line parser
 """
 
 import sys
