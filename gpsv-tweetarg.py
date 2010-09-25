@@ -115,7 +115,7 @@ class api_auth_factory:
 		return tweepy.API(auth)
 
 if __name__ == '__main__':
-	api = api_auth_factory().__call__()
+	api = api_auth_factory().__call__(['.gpsvtweetargrc','/etc/gpsvtweetargrc'])
 
 	print "****************************************"
 	print "API() created for", api.me().name, "(", api.me().screen_name, api.me().id, ")"
