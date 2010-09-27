@@ -1,0 +1,30 @@
+ _                                     
+| |                                    
+| |___      _____  ___  __ _ _ __ __ _ 
+| __\ \ /\ / / _ \/ _ \/ _` | '__/ _` |
+| |_ \ V  V /  __/  __/ (_| | | | (_| |
+ \__| \_/\_/ \___|\___|\__,_|_|  \__, |
+                                  __/ |
+                                 |___/ 
+and
+ _                     _           _   
+| |                   | |         | |  
+| |___      _____  ___| |__   ___ | |_ 
+| __\ \ /\ / / _ \/ _ \ '_ \ / _ \| __|
+| |_ \ V  V /  __/  __/ |_) | (_) | |_ 
+ \__| \_/\_/ \___|\___|_.__/ \___/ \__|
+                                       
+Source:		http://github.com/krid78/tweepybot
+Documentation:	none, yet
+Wiki:		none, yet
+Bug tracker:	http://github.com/krid78/tweepybot/issues
+
+Author:	Daniel Kriesten <krid@tu-chemnitz.eu>
+License:	GPLv2
+Dependencies:
+	* python >2.5
+	* tweepy (http://github.com/joshthecoder/tweepy)
+
+ASCII-Art by:
+http://www.ihr-freelancer.de/asciiart/
+Font: Big
