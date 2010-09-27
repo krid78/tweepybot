@@ -1,7 +1,7 @@
 #!/bin/env python -d -t
 # -*- encoding: utf-8 -*-
 """
-Package       :  gpsv-basic-register
+Package       :  tweetarg
 Author(s)     :  Daniel Kriesten
 Email         :  krid@tu-chemnitz.eu
 Creation Date :  Fr 17 Sep 2010 22:24:11 #u
